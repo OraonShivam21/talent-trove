@@ -7,13 +7,15 @@ const JobListings = ({ jobsPage = false }) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const apiUrl = `https://talent-trove-api.onrender.com`;
+
   useEffect(() => {
-    const apiUrl = jobsPage
-      ? "/api/jobs"
-      : "/api/jobs?_limit=3";
+    const apiUrlUpdated = jobsPage
+      ? `${apiUrl}/jobs`
+      : `${apiUrl}/jobs?_limit=3`;
     const fetchingData = async () => {
       try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrlUpdated);
         const data = await response.json();
         // setJobs(() => jobsPage ? data : data.slice(0, 3)); // if it fetches all the jobs without using _limit query
         setJobs(data);

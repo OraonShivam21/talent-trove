@@ -13,9 +13,11 @@ import JobPage, { jobLoader } from "./pages/JobPage";
 import EditJobPage from "./pages/EditJobPage";
 
 const App = () => {
+  const apiUrl = `https://talent-trove-api.onrender.com`;
+
   // adding a new job
   const addJob = async (newJob) => {
-    const response = await fetch("/api/jobs", {
+    const response = await fetch(`${apiUrl}/jobs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +33,7 @@ const App = () => {
 
   // deleting a job based on jobId
   const deleteJob = async (jobId) => {
-    const response = await fetch(`/api/jobs/${jobId}`, {
+    const response = await fetch(`${apiUrl}/jobs/${jobId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +46,7 @@ const App = () => {
   };
 
   const updateJob = async (jobDetails) => {
-    const response = await fetch(`/api/jobs/${jobDetails.id}`, {
+    const response = await fetch(`${apiUrl}/jobs/${jobDetails.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
